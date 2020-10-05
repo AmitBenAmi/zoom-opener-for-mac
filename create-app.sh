@@ -22,11 +22,11 @@ ICON_LOCATION=$4
 echo -e "${GREEN}"'Changing the startup script'"${NC}"
 cp ./Contents/MacOS/app.sh ./app.sh.backup
 sed -i '' 's/<url-for-zoom>/$ZOOM_URL/' ./Contents/MacOS/app.sh
-mv ./Contents/MacOS/app.sh ./Contents/MacOS/$APP_NAME.sh
+mv ./Contents/MacOS/app.sh "./Contents/MacOS/${APP_NAME}.sh"
 
 echo -e "${GREEN}"'Changing the icon'"${NC}"
 mv ./Contents/Resources/icon.icns ./icon.icns.backup
-mv $ICON_LOCATION ./Contents/Resources/icon.icns
+cp "${ICON_LOCATION}" ./Contents/Resources/icon.icns
 
 echo -e "${GREEN}"'Changing the Info.plist'"${NC}"
 cp ./Contents/Info.plist ./Info.plist.backup
@@ -35,13 +35,13 @@ sed -i '' 's/<CFBundleIdentifier>/$BUNDLE_IDENTIFIER/' ./Contents/Info.plist
 
 echo -e "${GREEN}"'Packaging the app'"${NC}"
 pkgbuild \
-    --install-location /Applications/$APP_NAME.app \
+    --install-location "/Applications/${APP_NAME}.app" \
     --root .  \
-    --identifier $BUNDLE_IDENTIFIER \
-    ./$APP_NAME.pkg
+    --identifier "${BUNDLE_IDENTIFIER}" \
+    "./${APP_NAME}.pkg"
 
 echo -e "${GREEN}"'Reverting all of the changes'"${NC}"
-rm ./Contents/MacOS/$APP_NAME.sh
+rm "./Contents/MacOS/${APP_NAME}.sh"
 mv ./app.sh.backup ./Contents/MacOS/app.sh
 mv ./icon.icns.backup ./Contents/Resources/icon.icns
 mv ./Info.plist.backup ./Contents/Info.plist
