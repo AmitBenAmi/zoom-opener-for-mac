@@ -7,7 +7,7 @@ if [[ $# -lt 5 ]]; then
     YELLOW='\033[1;33m'
     WHITE='\033[1;37m'
     echo -e "${YELLOW}"'Not a valid command, not enough parameters passed. Usage:'
-    echo -e "${WHITE}"'./create-app.sh "app-name" "bundle-identifier" /path/to/icon.icns "zoom-domain" "zoom-meeting-id" "zoom-meeting-password'
+    echo -e "${WHITE}"'./create-app.sh "app-name" "bundle-identifier" /path/to/icon.icns "zoom-domain" "zoom-meeting-id" ["zoom-meeting-password"]'
     echo -e '\n'"${YELLOW}"'For Example:'
     echo -e "${WHITE}"'./create-app.sh "Open Zoom" "zoom.open.my-company.com" ~/my-icongs/zoom-icon.icns "us04web.zoom.us" "77950543638" ["password"]'"${NC}"
     exit 1
@@ -21,7 +21,7 @@ ZOOM_MEETING_ID=$5
 ZOOM_PASSWORD=""
 
 if [[ -n $6 ]]; then
-    ZOOM_PASSWORD='&pwd='$5
+    ZOOM_PASSWORD='\&pwd='$5
 fi
 
 echo -e "${GREEN}"'Changing the startup script'"${NC}"
