@@ -1,3 +1,3 @@
 #!/bin/bash
 
-open "zoommtg://<url-for-zoom>"
+open "zoommtg://<zoom-domain>/join?confno=<meeting-id>"
