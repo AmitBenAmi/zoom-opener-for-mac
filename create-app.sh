@@ -36,12 +36,12 @@ sed -i '' 's/<CFBundleIdentifier>/$BUNDLE_IDENTIFIER/' ./pkg-content/Contents/In
 echo -e "${GREEN}"'Packaging the app'"${NC}"
 pkgbuild \
     --install-location "/Applications/${APP_NAME}.app" \
-    --root .  \
+    --root ./pkg-content  \
     --identifier "${BUNDLE_IDENTIFIER}" \
     "./${APP_NAME}.pkg"
 
 echo -e "${GREEN}"'Reverting all of the changes'"${NC}"
-rm "./pkg-content/pkg-content/Contents/MacOS/${APP_NAME}.sh"
-mv ./app.sh.backup ./pkg-content/pkg-content/Contents/MacOS/app.sh
-mv ./icon.icns.backup ./pkg-content/pkg-content/Contents/Resources/icon.icns
-mv ./Info.plist.backup ./pkg-content/pkg-content/Contents/Info.plist
+rm "./pkg-content/Contents/MacOS/${APP_NAME}.sh"
+mv ./app.sh.backup ./pkg-content/Contents/MacOS/app.sh
+mv ./icon.icns.backup ./pkg-content/Contents/Resources/icon.icns
+mv ./Info.plist.backup ./pkg-content/Contents/Info.plist
