@@ -21,7 +21,7 @@ ZOOM_MEETING_ID=$5
 ZOOM_PASSWORD=""
 
 if [[ -n $6 ]]; then
-    ZOOM_PASSWORD='\&pwd='$5
+    ZOOM_PASSWORD='\&pwd='$6
 fi
 
 echo -e "${GREEN}"'Changing the startup script'"${NC}"
