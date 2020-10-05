@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
-if [[ $# -ne  ]];
+if [[ $# -ne 4 ]];
 then
-    echo "Usage:"
-    echo "./create-app.sh \"app-name\" bundle-identifier zoom-url \"/path/to/icon.icns\""
-    echo "For Example:"
-    echo "./create-app.sh \"Open Zoom\" zoom.open.my-company.com https://us04web.zoom.us/j/77950543638?pwd=SDJ6V00vQUpzMEVBVWtncEtzWTltZz09 \"~/my-icongs/zoom-icon.icns\""
+    YELLOW="\033[1;33m"
+    WHITE="\033[1;37m"
+    NC="\033[0m"
+    echo -e "${YELLOW}Not a valid command, not enough parameters passed. Usage:"
+    echo -e "${WHITE}./create-app.sh \"app-name\" bundle-identifier zoom-url \"/path/to/icon.icns\""
+    echo -e "\n${YELLOW}For Example:"
+    echo -e "${WHITE}./create-app.sh \"Open Zoom\" zoom.open.my-company.com https://us04web.zoom.us/j/77950543638 \"~/my-icongs/zoom-icon.icns\"${NC}"
     exit 1
 fi
 
