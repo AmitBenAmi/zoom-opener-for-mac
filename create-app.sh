@@ -31,8 +31,9 @@ sed -i '' 's|<meeting-id>|'"${ZOOM_MEETING_ID}${ZOOM_PASSWORD}"'|' ./pkg-content
 mv ./pkg-content/Contents/MacOS/app.sh "./pkg-content/Contents/MacOS/${APP_NAME}.sh"
 
 echo -e "${GREEN}"'Changing the icon'"${NC}"
+cp "${ICON_LOCATION}" ./pkg-content/Contents/Resources/icon.icns.new
 mv ./pkg-content/Contents/Resources/icon.icns ./icon.icns.backup
-cp "${ICON_LOCATION}" ./pkg-content/Contents/Resources/icon.icns
+mv ./pkg-content/Contents/Resources/icon.icns.new ./pkg-content/Contents/Resources/icon.icns
 
 echo -e "${GREEN}"'Changing the Info.plist'"${NC}"
 cp ./pkg-content/Contents/Info.plist ./Info.plist.backup
