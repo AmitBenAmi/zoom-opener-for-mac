@@ -20,18 +20,18 @@ ZOOM_URL=$(echo $3 | sed -E 's/(http|https):\/\///')
 ICON_LOCATION=$4
 
 echo -e "${GREEN}"'Changing the startup script'"${NC}"
-cp ./Contents/MacOS/app.sh ./app.sh.backup
-sed -i '' 's/<url-for-zoom>/$ZOOM_URL/' ./Contents/MacOS/app.sh
-mv ./Contents/MacOS/app.sh "./Contents/MacOS/${APP_NAME}.sh"
+cp ./pkg-content/Contents/MacOS/app.sh ./app.sh.backup
+sed -i '' 's/<url-for-zoom>/$ZOOM_URL/' ./pkg-content/Contents/MacOS/app.sh
+mv ./pkg-content/Contents/MacOS/app.sh "./pkg-content/Contents/MacOS/${APP_NAME}.sh"
 
 echo -e "${GREEN}"'Changing the icon'"${NC}"
-mv ./Contents/Resources/icon.icns ./icon.icns.backup
-cp "${ICON_LOCATION}" ./Contents/Resources/icon.icns
+mv ./pkg-content/Contents/Resources/icon.icns ./icon.icns.backup
+cp "${ICON_LOCATION}" ./pkg-content/Contents/Resources/icon.icns
 
 echo -e "${GREEN}"'Changing the Info.plist'"${NC}"
-cp ./Contents/Info.plist ./Info.plist.backup
-sed -i '' 's/<AppName>/$APP_NAME/g' ./Contents/Info.plist
-sed -i '' 's/<CFBundleIdentifier>/$BUNDLE_IDENTIFIER/' ./Contents/Info.plist
+cp ./pkg-content/Contents/Info.plist ./Info.plist.backup
+sed -i '' 's/<AppName>/$APP_NAME/g' ./pkg-content/Contents/Info.plist
+sed -i '' 's/<CFBundleIdentifier>/$BUNDLE_IDENTIFIER/' ./pkg-content/Contents/Info.plist
 
 echo -e "${GREEN}"'Packaging the app'"${NC}"
 pkgbuild \
@@ -41,7 +41,7 @@ pkgbuild \
     "./${APP_NAME}.pkg"
 
 echo -e "${GREEN}"'Reverting all of the changes'"${NC}"
-rm "./Contents/MacOS/${APP_NAME}.sh"
-mv ./app.sh.backup ./Contents/MacOS/app.sh
-mv ./icon.icns.backup ./Contents/Resources/icon.icns
-mv ./Info.plist.backup ./Contents/Info.plist
+rm "./pkg-content/pkg-content/Contents/MacOS/${APP_NAME}.sh"
+mv ./app.sh.backup ./pkg-content/pkg-content/Contents/MacOS/app.sh
+mv ./icon.icns.backup ./pkg-content/pkg-content/Contents/Resources/icon.icns
+mv ./Info.plist.backup ./pkg-content/pkg-content/Contents/Info.plist
