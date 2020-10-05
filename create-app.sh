@@ -21,7 +21,7 @@ ICON_LOCATION=$4
 
 echo -e "${GREEN}"'Changing the startup script'"${NC}"
 cp ./Contents/MacOS/app.sh ./app.sh.backup
-sed -i 's/<url-for-zoom>/$ZOOM_URL/' ./Contents/MacOS/app.sh
+sed -i '' 's/<url-for-zoom>/$ZOOM_URL/' ./Contents/MacOS/app.sh
 mv ./Contents/MacOS/app.sh ./Contents/MacOS/$APP_NAME.sh
 
 echo -e "${GREEN}"'Changing the icon'"${NC}"
@@ -30,8 +30,8 @@ mv $ICON_LOCATION ./Contents/Resources/icon.icns
 
 echo -e "${GREEN}"'Changing the Info.plist'"${NC}"
 cp ./Contents/Info.plist ./Info.plist.backup
-sed -i 's/<AppName>/$APP_NAME/g' ./Contents/Info.plist
-sed -i 's/<CFBundleIdentifier>/$BUNDLE_IDENTIFIER/' ./Contents/Info.plist
+sed -i '' 's/<AppName>/$APP_NAME/g' ./Contents/Info.plist
+sed -i '' 's/<CFBundleIdentifier>/$BUNDLE_IDENTIFIER/' ./Contents/Info.plist
 
 echo -e "${GREEN}"'Packaging the app'"${NC}"
 pkgbuild \
